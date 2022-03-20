@@ -25,16 +25,14 @@ const Login = () => {
   const handleSubmit = async (event) => {
     event.preventDefault();
     try {
-      // const url = 'https://enigma-shop.herokuapp.com/api/v1/users/login';
-
-      const url = 'http://localhost:3000/api/v1/users/login';
+      const url = `https://enigma-shop.herokuapp.com/api/v1/users/login`;
       const response = await axios.post(url, { ...person });
-      console.log(response.data);
       localStorage.setItem('token', JSON.stringify(response.data));
       dispatch(
         userLogin({
           token: response.data.token,
           email: response.data.user.email,
+          role: response.data.user.role,
           // id: response.data.id,
         }),
       );
@@ -44,6 +42,8 @@ const Login = () => {
           token: response.data.token,
           firstName: response.data.user.firstName,
           lastName: response.data.user.lastName,
+          role: response.data.user.role,
+
           // id: response.data.id,
         }),
       );

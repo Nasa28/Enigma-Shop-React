@@ -13,7 +13,8 @@ import Register from '../containers/User/Register';
 import Login from '../containers/User/Login';
 import Logout from '../containers/User/Logout';
 import VerifyEmail from '../containers/User/VerifyEmail';
-
+import Dashboard from '../containers/User/Dashboard';
+import PrivateRoute from './PrivateRoute';
 function App() {
   const dispatch = useDispatch();
 
@@ -43,6 +44,9 @@ function App() {
           <Route exact path="/register/complete" element={<Register />} />
           <Route exact path="/login" element={<Login />} />
           <Route exact path="/logout" element={<Logout />} />
+
+          <Route exact path="/dashboard" element={<PrivateRoute />} />
+
           <Route exact path="/product/:id" element={<ProductDetails />} />
           <Route exact path="About" element={<About />} />
           <Route path="*" element={<Error />} />

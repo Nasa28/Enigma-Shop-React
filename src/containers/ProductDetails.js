@@ -13,8 +13,7 @@ const ProductDetails = () => {
   const [loading, setLoading] = useState(true);
   const dispatch = useDispatch();
   const { id } = useParams();
-  const url = `https://enigma-shop.herokuapp.com/api/v1/products${id}`;
-
+  const url = `https://enigma-shop.herokuapp.com/api/v1/products/${id}`;
   const fetchDetails = async () => {
     const response = await axios.get(url, { mode: 'cors' });
     dispatch(singleproduct(response.data.data.product));
@@ -32,7 +31,7 @@ const ProductDetails = () => {
       </main>
     );
   }
-  const { name, address, description, price, image } = details;
+  const { name, address, description, price, images } = details;
   return (
     <div className="container">
       <div>
@@ -45,7 +44,7 @@ const ProductDetails = () => {
           {address}
         </p>
         <p>Price: ${price}</p>
-        <img src={image} alt={name} className="detail-img" />
+        <img src={images} alt={name} className="detail-img" />
       </div>
       <div className="description">
         <h3 className="text-decoration-underline">product Description</h3>

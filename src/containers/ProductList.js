@@ -12,7 +12,8 @@ const ProductList = () => {
   const products = useSelector((state) => state.product.products);
   const [loading, setLoading] = useState(true);
   const dispatch = useDispatch();
-  const url = 'http://localhost:3000/api/v1/products/';
+  const url = 'https://enigma-shop.herokuapp.com/api/v1/products';
+
   const myFetch = async () => {
     const response = await axios.get(url);
     dispatch(allproducts(response.data.products));

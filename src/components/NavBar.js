@@ -44,9 +44,18 @@ const NavBar = () => {
           <ul className="ml-4">{auth.status && <LoggedInUser />}</ul>
           <ul>
             {auth.status && (
-              <Link to="/logout" className="ml-4">
-                Logout
-              </Link>
+              <>
+                <div>
+                  <Link to="/logout" className="ml-4">
+                    Logout
+                  </Link>
+                </div>
+                <div>
+                  <Link to="/dashboard" className="ml-4">
+                    Dashboard
+                  </Link>
+                </div>
+              </>
             )}
           </ul>
         </div>
