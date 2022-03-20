@@ -1,38 +1,58 @@
 import { Link } from 'react-router-dom';
-import ProductList from '../containers/ProductList';
+import { useSelector } from 'react-redux';
+import LoggedInUser from '../containers/User/LoggedInUser';
 import '../styles/NavBar.css';
-// import '../styles/productList.css';
 
-const NavBar = () => (
-  <>
-    <nav data-testid="nav" className="nav">
-      <div>
-        <Link className="heading" to="/" onClick={() => ProductList()}>
-          <h1>Home</h1>
-        </Link>
-      </div>
-      <div>
-        <Link className="heading" to="/" onClick={() => ProductList()}>
-          <h1>product Booking</h1>
-        </Link>
-      </div>
-      <div>
-        <Link className="heading" to="/About">
-          <h3>About</h3>
-        </Link>
-      </div>
-      <div>
-        <Link className="heading" to="/" onClick={() => ProductList()}>
-          <h1>Sign Up</h1>
-        </Link>
-      </div>
-      <div>
-        <Link className="heading" to="/" onClick={() => ProductList()}>
-          <h1>Login</h1>
-        </Link>
-      </div>
-    </nav>
-  </>
-);
+const NavBar = () => {
+  const auth = useSelector((state) => state.authenticate);
+
+  return (
+    <div data-testid="nav">
+      <nav className="">
+        <div className="container nav">
+          <h2 className="">
+            <Link to="/" className="logo">
+              Home
+            </Link>
+          </h2>
+
+          <ul className="">
+            <Link to="/products" className=" ml-4">
+              Products
+            </Link>
+          </ul>
+          {/* <ul>
+            <Link to="/favourites" className=" ml-4">
+              <FetchFav />
+            </Link>
+          </ul> */}
+          {!auth.status && (
+            <div className="d-flex">
+              <ul className="">
+                <Link to="/signup" className=" ml-4">
+                  Register
+                </Link>
+              </ul>
+              <ul className="">
+                <Link to="/login" className="ml-4">
+                  Login
+                </Link>
+              </ul>
+            </div>
+          )}
+
+          <ul className="ml-4">{auth.status && <LoggedInUser />}</ul>
+          <ul>
+            {auth.status && (
+              <Link to="/logout" className="ml-4">
+                Logout
+              </Link>
+            )}
+          </ul>
+        </div>
+      </nav>
+    </div>
+  );
+};
 
 export default NavBar;

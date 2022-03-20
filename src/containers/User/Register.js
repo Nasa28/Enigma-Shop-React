@@ -8,7 +8,7 @@ import authenticate from '../../Redux/Actions/authenticate';
 
 import { userSignup, SignupFailure } from '../../Redux/Actions/signup';
 
-const SignUp = () => {
+const Register = () => {
   const dispatch = useDispatch();
   const signup = useSelector((state) => state.signup);
 
@@ -114,4 +114,4 @@ const SignUp = () => {
   );
 };
 
-export default SignUp;
+export default Register;
