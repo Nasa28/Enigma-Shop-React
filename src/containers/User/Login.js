@@ -12,7 +12,7 @@ const Login = () => {
   const auth = useSelector((state) => state.authenticate);
 
   const [person, setPerson] = useState({
-    username: '',
+    email: '',
     password: '',
   });
 
@@ -21,48 +21,47 @@ const Login = () => {
     setPerson({ ...person, [name]: value });
   };
 
-  const handleSubmit = (event) => {
+  const handleSubmit = async (event) => {
     event.preventDefault();
-    const url = 'https://findmyhotels.herokuapp.com/api/v1/login';
-    axios
-      .post(url, { ...person })
-      .then((response) => {
-        localStorage.setItem('token', JSON.stringify(response.data));
+    try {
+      // const url = 'https://enigma-shop.herokuapp.com/api/v1/users/login';
 
-        dispatch(
-          userLogin({
-            token: response.data.token,
-            username: response.data.username,
-            id: response.data.id,
-          }),
-        );
-        dispatch(
-          authenticate({
-            status: true,
-            token: response.data.token,
-            username: response.data.username,
-            id: response.data.id,
-          }),
-        );
-      })
-      .catch(() => {
-        dispatch(loginFailure('Invalid username or Password. Try again!'));
-      });
+      const url = 'http://localhost:3000/api/v1/users/login';
+      const response = await axios.post(url, { ...person });
+      localStorage.setItem('token', JSON.stringify(response.data));
+      dispatch(
+        userLogin({
+          token: response.data.token,
+          email: response.data.email,
+          id: response.data.id,
+        }),
+      );
+      dispatch(
+        authenticate({
+          status: true,
+          token: response.data.token,
+          email: response.data.email,
+          id: response.data.id,
+        }),
+      );
+    } catch (error) {
+      dispatch(loginFailure(`${error.response.data.message}, Try again`));
+    }
   };
-  const { username, password } = person;
+  const { email, password } = person;
   return (
-    <div className="col-4 login">
-      <h2 className="text-center mb-4">User Login</h2>
+    <div className="col-4 form">
+      <h2 className="text-center mb-4">Login</h2>
       {login.error && <LoginError error={login.error} />}
       {auth.status && <Navigate to="/" replace />}
       <form onSubmit={handleSubmit}>
         <div className="form-group">
           <input
             className="form-control mb-4"
-            type="text"
-            name="username"
-            placeholder="Username"
-            value={username}
+            type="email"
+            name="email"
+            placeholder="email"
+            value={email}
             onChange={handleChange}
             required
           />

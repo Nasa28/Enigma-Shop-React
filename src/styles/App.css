@@ -15,3 +15,7 @@ body {
 .about {
   color: rgb(136, 221, 136);
 }
+
+.form {
+  margin: 0 auto;
+}

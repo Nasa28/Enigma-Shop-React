@@ -10,42 +10,44 @@ import { userSignup, SignupFailure } from '../../Redux/Actions/signup';
 
 const Register = () => {
   const dispatch = useDispatch();
-  const signup = useSelector((state) => state.signup);
+  const register = useSelector((state) => state.signup);
 
   const [person, setPerson] = useState({
-    username: '',
+    firstName: '',
+    lastName: '',
+    email: '',
     password: '',
-    password_confirmation: '',
+    passwordConfirm: '',
   });
 
   const handleChange = (event) => {
     const { name, value } = event.target;
     setPerson({ ...person, [name]: value });
   };
+  const { firstName, lastName, email, password, passwordConfirm } = person;
 
-  const handleSubmit = (event) => {
+  const handleSubmit = async (event) => {
     event.preventDefault();
-    const url = 'https://findmyhotels.herokuapp.com/api/v1/signup';
-    axios
-      .post(url, { user: person })
-      .then((response) => {
-        localStorage.setItem('token', JSON.stringify(response.data));
-        dispatch(
-          userSignup({
-            token: response.data.token,
-            username: response.data.username,
-          }),
-        );
-      })
-      .catch(() => {
-        dispatch(
-          SignupFailure(
-            'Username must be longer than 4 and password longer than 8. Try again!',
-          ),
-        );
-      });
+    try {
+      const url = 'http://localhost:3000/api/v1/users/register';
+      // const url = 'https://enigma-shop.herokuapp.com/api/v1/users/signUp';
+      console.log(person);
 
-    if (person.username && person.password && person.password_confirmation) {
+      const response = await axios.post(url, { ...person });
+
+      localStorage.setItem('token', JSON.stringify(response.data));
+      dispatch(
+        userSignup({
+          token: response.data.token,
+          username: response.data.username,
+        }),
+      );
+      console.log(response);
+    } catch (error) {
+      console.log(error.message);
+    }
+
+    if (person.username && person.password && person.passwordConfirm) {
       dispatch(
         userSignup({
           ...person,
@@ -54,8 +56,8 @@ const Register = () => {
     }
   };
 
-  if (signup.user.token) {
-    const { user } = signup;
+  if (register.user.token) {
+    const { user } = register;
     dispatch(
       authenticate({
         status: true,
@@ -64,20 +66,42 @@ const Register = () => {
       }),
     );
   }
-  const { username, password, password_confirmation } = person;
   return (
-    <div className="col-4 login">
-      <h2 className="text-center  mb-3">User SignUp</h2>
-      {signup.user.token && <Navigate to="/hotels" replace />}
+    <div className="col-4 form">
+      <h2 className="text-center  mb-3">Register</h2>
+      {register.user.token && <Navigate to="/products" replace />}
 
       <form onSubmit={handleSubmit}>
         <div className="form-group mb-4">
           <input
             className="form-control"
             type="text"
-            name="username"
-            placeholder="Username"
-            value={username}
+            name="firstName"
+            placeholder="First Name"
+            value={firstName}
+            onChange={handleChange}
+            required
+          />
+        </div>
+        <div className="form-group mb-4">
+          <input
+            className="form-control"
+            type="text"
+            name="lastName"
+            placeholder="Last Name"
+            value={lastName}
+            onChange={handleChange}
+            required
+          />
+        </div>
+
+        <div className="form-group mb-4">
+          <input
+            className="form-control"
+            type="email"
+            name="email"
+            placeholder="Email"
+            value={email}
             onChange={handleChange}
             required
           />
@@ -99,9 +123,9 @@ const Register = () => {
           <input
             className="form-control"
             type="password"
-            name="password_confirmation"
+            name="passwordConfirm"
             placeholder="Confirm Password "
-            value={password_confirmation}
+            value={passwordConfirm}
             onChange={handleChange}
             required
           />

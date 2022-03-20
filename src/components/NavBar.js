@@ -29,7 +29,7 @@ const NavBar = () => {
           {!auth.status && (
             <div className="d-flex">
               <ul className="">
-                <Link to="/signup" className=" ml-4">
+                <Link to="/register" className=" ml-4">
                   Register
                 </Link>
               </ul>
