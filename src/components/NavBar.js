@@ -11,14 +11,24 @@ const NavBar = () => (
           <h1>Home</h1>
         </Link>
       </div>
-      <header>
+      <div>
         <Link className="heading" to="/" onClick={() => ProductList()}>
           <h1>product Booking</h1>
         </Link>
-      </header>
+      </div>
       <div>
         <Link className="heading" to="/About">
           <h3>About</h3>
+        </Link>
+      </div>
+      <div>
+        <Link className="heading" to="/" onClick={() => ProductList()}>
+          <h1>Sign Up</h1>
+        </Link>
+      </div>
+      <div>
+        <Link className="heading" to="/" onClick={() => ProductList()}>
+          <h1>Login</h1>
         </Link>
       </div>
     </nav>

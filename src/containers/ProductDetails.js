@@ -13,7 +13,7 @@ const ProductDetails = () => {
   const [loading, setLoading] = useState(true);
   const dispatch = useDispatch();
   const { id } = useParams();
-  const url = `https://ancient-wildwood-13722.herokuapp.com/api/v1/products${id}`;
+  const url = `https://enigma-shop.herokuapp.com/api/v1/products${id}`;
 
   const fetchDetails = async () => {
     const response = await axios.get(url, { mode: 'cors' });
