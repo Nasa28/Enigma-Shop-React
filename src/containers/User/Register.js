@@ -1,8 +1,9 @@
 /* eslint-disable camelcase */
 
-import React, { useState } from 'react';
+import React, { useState, useEffect } from 'react';
 import { useDispatch, useSelector } from 'react-redux';
 import axios from 'axios';
+import { toast, ToastContainer } from 'react-toastify';
 import { Navigate } from 'react-router';
 import authenticate from '../../Redux/Actions/authenticate';
 
@@ -11,43 +12,46 @@ import { userSignup, SignupFailure } from '../../Redux/Actions/signup';
 const Register = () => {
   const dispatch = useDispatch();
   const register = useSelector((state) => state.signup);
-
+  const [email, setEmail] = useState('');
   const [person, setPerson] = useState({
     firstName: '',
     lastName: '',
-    email: '',
     password: '',
     passwordConfirm: '',
   });
-
+  useEffect(() => {
+    setEmail(window.localStorage.getItem('emailForRegistration'));
+  }, []);
   const handleChange = (event) => {
     const { name, value } = event.target;
     setPerson({ ...person, [name]: value });
   };
-  const { firstName, lastName, email, password, passwordConfirm } = person;
+  const { firstName, lastName, password, passwordConfirm } = person;
 
   const handleSubmit = async (event) => {
     event.preventDefault();
     try {
       const url = 'http://localhost:3000/api/v1/users/register';
       // const url = 'https://enigma-shop.herokuapp.com/api/v1/users/signUp';
-      console.log(person);
 
-      const response = await axios.post(url, { ...person });
-
+      const response = await axios.post(url, { ...person, email });
+      console.log(response);
       localStorage.setItem('token', JSON.stringify(response.data));
       dispatch(
         userSignup({
+          status: true,
           token: response.data.token,
-          username: response.data.username,
+          firstName: response.data.user.firstName,
+          lastName: response.data.user.lastName,
         }),
       );
-      console.log(response);
     } catch (error) {
-      console.log(error.message);
+      dispatch(SignupFailure(`${error.response.data.message}, Try again`));
+      console.log(register.error)
+      toast.warning(`${register.error}`);
     }
 
-    if (person.username && person.password && person.passwordConfirm) {
+    if (person.email && person.password && person.passwordConfirm) {
       dispatch(
         userSignup({
           ...person,
@@ -58,16 +62,29 @@ const Register = () => {
 
   if (register.user.token) {
     const { user } = register;
+    console.log(user);
     dispatch(
       authenticate({
         status: true,
-        token: user.token,
-        username: user.username,
+        token: user.data.token,
+        firstName: user.data.user.firstName,
+        lastName: user.data.user.lastName,
       }),
     );
   }
   return (
     <div className="col-4 form">
+      <ToastContainer
+        position="top-right"
+        autoClose={5000}
+        hideProgressBar={true}
+        newestOnTop={false}
+        closeOnClick
+        rtl={false}
+        pauseOnFocusLoss
+        draggable
+        pauseOnHover
+      />
       <h2 className="text-center  mb-3">Register</h2>
       {register.user.token && <Navigate to="/products" replace />}
 
@@ -104,6 +121,7 @@ const Register = () => {
             value={email}
             onChange={handleChange}
             required
+            disabled
           />
         </div>
 

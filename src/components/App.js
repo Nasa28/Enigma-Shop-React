@@ -12,6 +12,7 @@ import About from './About';
 import Register from '../containers/User/Register';
 import Login from '../containers/User/Login';
 import Logout from '../containers/User/Logout';
+import VerifyEmail from '../containers/User/VerifyEmail';
 
 function App() {
   const dispatch = useDispatch();
@@ -23,13 +24,14 @@ function App() {
         authenticate({
           status: true,
           token: user.token,
-          username: user.username,
+          firstName: user.user.firstName,
+          lastName: user.user.lastName,
         }),
       );
     } else {
       dispatch(authenticate());
     }
-  }, []);
+  });
   return (
     <div className="App">
       <Router>
@@ -37,7 +39,8 @@ function App() {
         <Routes>
           <Route exact path="/" element={<ProductList />} />
           <Route exact path="/products" element={<ProductList />} />
-          <Route exact path="/register" element={<Register />} />
+          <Route exact path="/verify-email" element={<VerifyEmail />} />
+          <Route exact path="/register/complete" element={<Register />} />
           <Route exact path="/login" element={<Login />} />
           <Route exact path="/logout" element={<Logout />} />
           <Route exact path="/product/:id" element={<ProductDetails />} />

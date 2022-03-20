@@ -2,7 +2,7 @@ import actionTypes from '../constants/actionTypes';
 
 const initialState = {
   user: {},
-  error: null,
+  error: '',
   loggedIn: false,
 };
 
@@ -17,9 +17,7 @@ const registerReducer = (state = initialState, { type, payload }) => {
 
     case actionTypes.USER_SIGNUP_FAIL:
       return {
-        user: {},
         error: payload,
-        loggedIn: false,
       };
 
     default:

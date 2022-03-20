@@ -1,10 +1,11 @@
 import React, { useState } from 'react';
 import { useDispatch, useSelector } from 'react-redux';
 import axios from 'axios';
+import { toast, ToastContainer } from 'react-toastify';
 import { Navigate } from 'react-router';
 import authenticate from '../../Redux/Actions/authenticate';
 import { userLogin, loginFailure } from '../../Redux/Actions/login';
-import LoginError from './LoginError';
+// import LoginError from './LoginError';
 
 const Login = () => {
   const dispatch = useDispatch();
@@ -28,31 +29,46 @@ const Login = () => {
 
       const url = 'http://localhost:3000/api/v1/users/login';
       const response = await axios.post(url, { ...person });
+      console.log(response.data);
       localStorage.setItem('token', JSON.stringify(response.data));
       dispatch(
         userLogin({
           token: response.data.token,
-          email: response.data.email,
-          id: response.data.id,
+          email: response.data.user.email,
+          // id: response.data.id,
         }),
       );
       dispatch(
         authenticate({
           status: true,
           token: response.data.token,
-          email: response.data.email,
-          id: response.data.id,
+          firstName: response.data.user.firstName,
+          lastName: response.data.user.lastName,
+          // id: response.data.id,
         }),
       );
     } catch (error) {
       dispatch(loginFailure(`${error.response.data.message}, Try again`));
+      toast.warning(`${login.error}`);
     }
   };
   const { email, password } = person;
+
   return (
     <div className="col-4 form">
+      <ToastContainer
+        position="top-right"
+        autoClose={5000}
+        hideProgressBar={true}
+        newestOnTop={false}
+        closeOnClick
+        rtl={false}
+        pauseOnFocusLoss
+        draggable
+        pauseOnHover
+      />
       <h2 className="text-center mb-4">Login</h2>
-      {login.error && <LoginError error={login.error} />}
+      {/* {login.error && <LoginError error={login.error} />} */}
       {auth.status && <Navigate to="/" replace />}
       <form onSubmit={handleSubmit}>
         <div className="form-group">
