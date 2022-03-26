@@ -15,6 +15,7 @@ import Logout from '../containers/User/Logout';
 import VerifyEmail from '../containers/User/VerifyEmail';
 import Dashboard from '../containers/User/Dashboard';
 import PrivateRoute from './PrivateRoute';
+import PostProduct from '../containers/products/PostProduct';
 function App() {
   const dispatch = useDispatch();
 
@@ -44,6 +45,12 @@ function App() {
           <Route exact path="/register/complete" element={<Register />} />
           <Route exact path="/login" element={<Login />} />
           <Route exact path="/logout" element={<Logout />} />
+
+          <Route
+            exact
+            path="/product/create-product"
+            element={<PostProduct />}
+          />
 
           <Route exact path="/dashboard" element={<PrivateRoute />} />
 

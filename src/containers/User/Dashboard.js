@@ -1,13 +1,16 @@
 import React from 'react';
+import DashboardNav from './DashboardNav';
 
 const Dashboard = () => {
+  
   return (
     <>
       <div>
-        <h1>Dashboard</h1>
+        <h1 className="text-center">Dashboard</h1>
       </div>
+      <DashboardNav />
       <div>
-        <h3>User Utility Links</h3>
+        <h3 className="text-center">My products</h3>
       </div>
     </>
   );

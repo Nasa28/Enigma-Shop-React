@@ -19,3 +19,19 @@ body {
 .form {
   margin: 0 auto;
 }
+
+.dashboardNav {
+  background: rgb(187, 185, 185);
+}
+.dashboard {
+  display: flex;
+  justify-content: space-around;
+  height: 70px;
+  align-items: center;
+}
+
+.ml-4 {
+  text-decoration: none;
+  font-size: 24px;
+  color: blueviolet;
+}

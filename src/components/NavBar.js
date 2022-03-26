@@ -21,11 +21,7 @@ const NavBar = () => {
               Products
             </Link>
           </ul>
-          {/* <ul>
-            <Link to="/favourites" className=" ml-4">
-              <FetchFav />
-            </Link>
-          </ul> */}
+
           {!auth.status && (
             <div className="d-flex">
               <ul className="">
