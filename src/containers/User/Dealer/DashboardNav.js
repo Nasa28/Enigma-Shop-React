@@ -3,7 +3,7 @@ import { Link } from 'react-router-dom';
 
 const DashboardNav = () => {
   const active = window.location.pathname;
-  console.log(active)
+  console.log(active);
   return (
     <>
       <nav className=" dashboardNav">
@@ -13,8 +13,8 @@ const DashboardNav = () => {
               Post Product
             </Link>
 
-            <Link to="/signup" className=" ml-4">
-              Sign Up
+            <Link to="/my-products" className=" ml-4">
+              My products
             </Link>
 
             <Link to="/login" className="ml-4">

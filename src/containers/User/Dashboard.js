@@ -1,5 +1,5 @@
 import React from 'react';
-import DashboardNav from './DashboardNav';
+import DashboardNav from './Dealer/DashboardNav';
 
 const Dashboard = () => {
   
