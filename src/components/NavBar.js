@@ -2,6 +2,7 @@ import { Link } from 'react-router-dom';
 import { useSelector } from 'react-redux';
 import LoggedInUser from '../containers/User/LoggedInUser';
 import '../styles/NavBar.css';
+import DashboardNav from '../containers/User/Dealer/DashboardNav';
 
 const NavBar = () => {
   const auth = useSelector((state) => state.authenticate);
@@ -9,12 +10,12 @@ const NavBar = () => {
   return (
     <div data-testid="nav">
       <nav className="">
-        <div className="container nav">
-          <h2 className="">
-            <Link to="/" className="logo">
+        <div className=" nav">
+          <ul className="">
+            <Link to="/" className="ml-4">
               Home
             </Link>
-          </h2>
+          </ul>
 
           <ul className="">
             <Link to="/products" className=" ml-4">
@@ -23,7 +24,7 @@ const NavBar = () => {
           </ul>
 
           {!auth.status && (
-            <div className="d-flex">
+            <>
               <ul className="">
                 <Link to="/verify-email" className=" ml-4">
                   Register
@@ -34,26 +35,28 @@ const NavBar = () => {
                   Login
                 </Link>
               </ul>
-            </div>
+            </>
           )}
 
           <ul className="ml-4">{auth.status && <LoggedInUser />}</ul>
-          <ul>
-            {auth.status && (
-              <>
-                <div>
-                  <Link to="/logout" className="ml-4">
-                    Logout
-                  </Link>
-                </div>
-                <div>
-                  <Link to="/dashboard" className="ml-4">
-                    Dashboard
-                  </Link>
-                </div>
-              </>
-            )}
-          </ul>
+          {auth.status && (
+            <ul>
+              <Link to="/product/create-product" className="ml-4">
+                Profile
+              </Link>
+            </ul>
+          )}
+          {auth.status && (
+            <>
+              <ul>
+                <Link to="/logout" className="ml-4">
+                  Logout
+                </Link>
+              </ul>
+            </>
+          )}
+
+          <u className="last-nav ml-4">{auth.status && <DashboardNav />}</u>
         </div>
       </nav>
     </div>

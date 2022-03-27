@@ -1,36 +1,26 @@
 /* eslint-disable camelcase */
 
-import { useEffect, useState } from 'react';
+import { useEffect } from 'react';
 import axios from 'axios';
 import { useSelector, useDispatch } from 'react-redux';
-import Loading from '../components/Loading';
 import { allproducts } from '../Redux/Actions/productActions';
 import Product from '../components/Product';
 import '../styles/Product.css';
 
 const ProductList = () => {
   const products = useSelector((state) => state.product.products);
-  const [loading, setLoading] = useState(true);
   const dispatch = useDispatch();
   const url = 'https://enigma-shop.herokuapp.com/api/v1/products';
 
-  const myFetch = async () => {
+  const fetchProducts = async () => {
     const response = await axios.get(url);
+    console.log(response.data.products);
     dispatch(allproducts(response.data.products));
-    setLoading(false);
   };
 
   useEffect(() => {
-    myFetch();
+    fetchProducts();
   }, []);
-
-  if (loading) {
-    return (
-      <main data-testid="loading">
-        <Loading />
-      </main>
-    );
-  }
 
   return (
     <>

@@ -1,7 +1,7 @@
 import actionTypes from '../constants/actionTypes';
 
-export const allproducts = (products) => ({
-  type: actionTypes.ALL_PRODUCTS,
+export const myProducts = (products) => ({
+  type: actionTypes.MY_PRODUCTS,
   payload: products,
 });
 

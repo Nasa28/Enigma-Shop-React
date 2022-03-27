@@ -5,39 +5,49 @@ import axios from 'axios';
 import { Link } from 'react-router-dom';
 
 import { useSelector, useDispatch } from 'react-redux';
-import Loading from '../components/Loading';
-import { allproducts } from '../Redux/Actions/productActions';
-import '../styles/Product.css';
+import Loading from '../Dealer/../../../components/Loading';
+import { myProducts } from '../Dealer/../../../Redux/Actions/myProductAction';
+import '../Dealer/../../../styles/Product.css';
 
 const MyProducts = () => {
-  const products = useSelector((state) => state.product.products);
+  const myProduct = useSelector((state) => state.myProducts.products);
+  const auth = useSelector((state) => state.authenticate);
+
   const [loading, setLoading] = useState(true);
   const dispatch = useDispatch();
-  const url = 'https://enigma-shop.herokuapp.com/api/v1/products';
+  const url = 'https://enigma-shop.herokuapp.com/api/v1/products/myProducts';
 
   const myFetch = async () => {
-    const response = await axios.get(url);
-    dispatch(allproducts(response.data.products));
-    setLoading(false);
+    const response = await axios.get(
+      url,
+      {
+        headers: {
+          Authorization: `Bearer ${auth.token}`,
+        },
+      },
+      { withCredentials: true },
+    );
+    dispatch(myProducts(response.data.data.myProducts));
+    // setLoading(false);
   };
 
   useEffect(() => {
     myFetch();
   }, []);
 
-  if (loading) {
-    return (
-      <main data-testid="loading">
-        <Loading />
-      </main>
-    );
-  }
+  // if (loading) {
+  //   return (
+  //     <main data-testid="loading">
+  //       <Loading />
+  //     </main>
+  //   );
+  // }
 
   return (
     <>
       <div className="container">
         <div className="productList">
-          {products.map((product) => {
+          {myProduct.map((product) => {
             const { _id, title, description, price, images, slug } = product;
             return (
               <div className="meal-card " data-testid="meal-card" key={_id}>
@@ -50,14 +60,6 @@ const MyProducts = () => {
                     <h3 className="title">{price}</h3>
                   </div>
                 </Link>
-
-                <div>
-                  <Link to={`/product/${_id}`}>
-                    <button type="button" className="btn btn-primary">
-                      Book product
-                    </button>
-                  </Link>
-                </div>
               </div>
             );
           })}

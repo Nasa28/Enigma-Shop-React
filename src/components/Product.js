@@ -13,14 +13,6 @@ const Product = ({ id, title, image, price }) => (
         <h3 className="title">{price}</h3>
       </div>
     </Link>
-
-    <div>
-      <Link to={`/product/${id}`}>
-        <button type="button" className="btn btn-primary">
-          Book product
-        </button>
-      </Link>
-    </div>
   </div>
 );
 

@@ -4,13 +4,13 @@ const initialState = {
   products: [],
 };
 
-const productReducer = (state = initialState, { type, payload }) => {
+const myProductsReducer = (state = initialState, { type, payload }) => {
   switch (type) {
-    case actionTypes.ALL_PRODUCTS:
+    case actionTypes.MY_PRODUCTS:
       return { ...state, products: payload };
     default:
       return state;
   }
 };
 
-export default productReducer;
+export default myProductsReducer;

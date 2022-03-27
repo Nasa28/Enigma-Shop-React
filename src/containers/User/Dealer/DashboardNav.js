@@ -1,28 +1,26 @@
 import React from 'react';
 import { Link } from 'react-router-dom';
+import MyProducts from './MyProducts';
+import '../../../styles/NavBar.css';
 
 const DashboardNav = () => {
-  const active = window.location.pathname;
-  console.log(active);
   return (
     <>
-      <nav className=" dashboardNav">
-        <div className="container-fluid">
-          <ul className="dashboard">
-            <Link to="/product/create-product" className=" ml-4">
+      <nav className=" container-fluid">
+        <div className="dashboard">
+          <ul>
+            <Link to="/product/create-product" className="ml-4">
               Post Product
             </Link>
-
-            <Link to="/my-products" className=" ml-4">
+          </ul>
+          
+          <ul>
+            <Link
+              to="/my-products"
+              className="ml-4"
+              onClick={() => MyProducts()}
+            >
               My products
-            </Link>
-
-            <Link to="/login" className="ml-4">
-              Login
-            </Link>
-
-            <Link to="/logout" className="ml-4">
-              Logout
             </Link>
           </ul>
         </div>

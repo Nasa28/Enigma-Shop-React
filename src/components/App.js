@@ -15,25 +15,26 @@ import Logout from '../containers/User/Logout';
 import VerifyEmail from '../containers/User/VerifyEmail';
 import Dashboard from '../containers/User/Dashboard';
 import PrivateRoute from './PrivateRoute';
-import PostProduct from '../containers/products/PostProduct';
+import PostProduct from '../containers/User/Dealer/PostProduct';
+import MyProducts from '../containers/User/Dealer/MyProducts';
 function App() {
   const dispatch = useDispatch();
 
-  useEffect(() => {
-    const user = JSON.parse(localStorage.getItem('token'));
-    if (user) {
-      dispatch(
-        authenticate({
-          status: true,
-          token: user.token,
-          firstName: user.user.firstName,
-          lastName: user.user.lastName,
-        }),
-      );
-    } else {
-      dispatch(authenticate());
-    }
-  });
+  // useEffect(() => {
+  //   const user = JSON.parse(localStorage.getItem('token'));
+  //   if (user) {
+  //     dispatch(
+  //       authenticate({
+  //         status: true,
+  //         token: user.token,
+  //         firstName: user.user.firstName,
+  //         lastName: user.user.lastName,
+  //       }),
+  //     );
+  //   } else {
+  //     dispatch(authenticate());
+  //   }
+  // });
   return (
     <div className="App">
       <Router>
@@ -45,6 +46,7 @@ function App() {
           <Route exact path="/register/complete" element={<Register />} />
           <Route exact path="/login" element={<Login />} />
           <Route exact path="/logout" element={<Logout />} />
+          <Route exact path="/my-products" element={<MyProducts />} />
 
           <Route
             exact
@@ -52,7 +54,7 @@ function App() {
             element={<PostProduct />}
           />
 
-          <Route exact path="/dashboard" element={<PrivateRoute />} />
+          {/* <Route exact path="/dashboard" element={<PrivateRoute />} /> */}
 
           <Route exact path="/product/:id" element={<ProductDetails />} />
           <Route exact path="About" element={<About />} />

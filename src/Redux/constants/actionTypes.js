@@ -1,6 +1,6 @@
 const actionTypes = {
-  ALL_products: 'ALL_products',
-  SINGLE_product: 'SINGLE_product',
+  ALL_PRODUCTS: 'ALL_products',
+  SINGLE_PRODUCT: 'SINGLE_product',
   SIGN_UP: 'SIGN_UP',
   USER_SIGNUP: 'USER_SIGNUP',
   USER_SIGNUP_SUCCESS: 'USER_SIGNUP_SUCCESS',
@@ -8,6 +8,7 @@ const actionTypes = {
   AUTHENTICATE: 'AUTHENTICATE',
   USER_LOGIN: 'USER_LOGIN',
   USER_LOGIN_FAIL: 'USER_LOGIN_FAIL',
+  MY_PRODUCTS: 'MY_PRODUCTS',
 };
 
 export default actionTypes;

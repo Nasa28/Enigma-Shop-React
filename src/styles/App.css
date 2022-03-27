@@ -20,14 +20,18 @@ body {
   margin: 0 auto;
 }
 
-.dashboardNav {
+/* .dashboardNav {
   background: rgb(187, 185, 185);
-}
+} */
 .dashboard {
   display: flex;
-  justify-content: space-around;
+  justify-content: space-between;
   height: 70px;
   align-items: center;
+}
+
+.last-nav {
+  flex-grow: 0.5;
 }
 
 .ml-4 {
