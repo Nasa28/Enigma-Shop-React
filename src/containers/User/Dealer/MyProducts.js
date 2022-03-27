@@ -36,19 +36,18 @@ const MyProducts = () => {
 
   return (
     <>
-      <DashboardNav />
-      <div className="">
+      <div className="my-prod">
         <div className="my-card">
           {myProduct.map((product) => {
             const { _id, title, description, price, images, slug } = product;
             return (
               <div className="" key={_id}>
-                <Link className="cards " to={`/product/${_id}`}>
+                <Link className="card " to={`/product/${_id}`}>
                   <div>
-                    <img className="image" src={images} alt={title} />
+                    <img className="my-image" src={images} alt={title} />
                   </div>
                   <div>
-                    <h3 className="title">{title}</h3>
+                    <h3 className="my-title">{title}</h3>
                     <h3 className="title">{price}</h3>
                   </div>
                 </Link>

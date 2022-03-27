@@ -11,10 +11,9 @@ import Register from '../containers/User/Register';
 import Login from '../containers/User/Login';
 import Logout from '../containers/User/Logout';
 import VerifyEmail from '../containers/User/VerifyEmail';
-// import Dashboard from '../containers/User/Dashboard';
-import PrivateRoute from './PrivateRoute';
 import PostProduct from '../containers/User/Dealer/PostProduct';
 import MyProducts from '../containers/User/Dealer/MyProducts';
+import Dashboard from '../containers/User/Dashboard';
 function App() {
   return (
     <div className="App">
@@ -26,15 +25,12 @@ function App() {
           <Route exact path="/register/complete" element={<Register />} />
           <Route exact path="/login" element={<Login />} />
           <Route exact path="/logout" element={<Logout />} />
-          <Route exact path="/dashboard/my-products" element={<MyProducts />} />
 
-          <Route
-            exact
-            path="/product/create-product"
-            element={<PostProduct />}
-          />
+          <Route path="dashboard" element={<Dashboard />}>
+            <Route path="my-products" element={<MyProducts />} />
 
-          <Route exact path="/dashboard" element={<PrivateRoute />} />
+            <Route path="create-product" element={<PostProduct />} />
+          </Route>
 
           <Route exact path="/product/:id" element={<ProductDetails />} />
           <Route exact path="About" element={<About />} />

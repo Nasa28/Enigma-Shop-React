@@ -43,12 +43,39 @@ body {
 }
 
 .my-card {
-  display: grid;
-  grid-template-columns: 1fr 1fr 1fr;
+  display: flex;
+  /* grid-template-columns: 1fr 1fr 1fr; */
 }
 
 .main-nav {
   display: flex;
   position: -webkit-sticky;
   position: sticky;
+}
+
+.my-prod {
+  margin-left: 15%;
+}
+
+
+.my-card {
+  display: grid;
+  grid-template-columns: 1fr 1fr 1fr ;
+  grid-gap: 25px;
+  max-width: 400px;
+  max-height: 300px;
+  font-size: 16px;
+  border-radius: 10px;
+}
+
+.my-image {
+  width: 300px;
+  height: 220px;
+  padding: 10px;
+}
+
+.my-title {
+  font-size: 16px;
+  /* padding-top: 10px; */
+  text-align: center;
 }

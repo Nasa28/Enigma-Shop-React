@@ -3,7 +3,7 @@ import { Link } from 'react-router-dom';
 import '../styles/Product.css';
 
 const Product = ({ id, title, image, price }) => (
-  <div className="meal-card " data-testid="meal-card" key={id}>
+  <div className="product-card "  key={id}>
     <Link className="cards " to={`/product/${id}`}>
       <div>
         <img className="image" src={image} alt={title} />

@@ -17,17 +17,14 @@ const DashboardNav = () => {
     <div className="main-nav">
       <Menu onClick={handleClick} selectedKeys={[current]} mode="vertical">
         <Menu.Item key="home">
-          <Link to="/product/create-product">Post Product</Link>
+          <Link to="my-products">My Products</Link>
         </Menu.Item>
         <Menu.Item
-          key="register"
+          key="product"
           icon={<UserAddOutlined />}
           className="float-right"
         >
-          <Link to="my-products">My Product List</Link>
-        </Menu.Item>
-        <Menu.Item key="login" icon={<UserOutlined />} className="float-right">
-          <Link to="/login">Login</Link>
+          <Link to="create-product">Post Product</Link>
         </Menu.Item>
       </Menu>
     </div>
