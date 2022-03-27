@@ -6,7 +6,7 @@ import DashboardNav from '../containers/User/Dealer/DashboardNav';
 
 const NavBar = () => {
   const auth = useSelector((state) => state.authenticate);
-
+  console.log(auth);
   return (
     <div data-testid="nav">
       <nav className="">
@@ -41,7 +41,7 @@ const NavBar = () => {
           <ul className="ml-4">{auth.status && <LoggedInUser />}</ul>
           {auth.status && (
             <ul>
-              <Link to="/product/create-product" className="ml-4">
+              <Link to="/product/my-profile" className="ml-4">
                 Profile
               </Link>
             </ul>
@@ -56,7 +56,11 @@ const NavBar = () => {
             </>
           )}
 
-          <u className="last-nav ml-4">{auth.status && <DashboardNav />}</u>
+          <u className="last-nav ml-4">
+            {(auth.role === 'dealer' || auth.role === 'admin') && (
+              <DashboardNav />
+            )}
+          </u>
         </div>
       </nav>
     </div>
