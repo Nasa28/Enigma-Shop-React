@@ -24,10 +24,12 @@ body {
   background: rgb(187, 185, 185);
 } */
 .dashboard {
-  display: flex;
-  justify-content: space-between;
   height: 70px;
-  align-items: center;
+  border-right: 1px dashed;
+  min-width: fit-content;
+  padding-right: 20px;
+  margin-right: 50px;
+  position: fixed;
 }
 
 .last-nav {
@@ -37,5 +39,16 @@ body {
 .ml-4 {
   text-decoration: none;
   font-size: 24px;
-  color: blueviolet;
+  color: rgb(33, 32, 34);
+}
+
+.my-card {
+  display: grid;
+  grid-template-columns: 1fr 1fr 1fr;
+}
+
+.main-nav {
+  display: flex;
+  position: -webkit-sticky;
+  position: sticky;
 }

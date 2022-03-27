@@ -19,6 +19,8 @@ import { Provider } from 'react-redux';
 import { PersistGate } from 'redux-persist/integration/react';
 import { store, persistor } from './Redux/store/store';
 import App from './components/App';
+import 'antd/dist/antd.css';
+
 
 ReactDOM.render(
   <React.StrictMode>

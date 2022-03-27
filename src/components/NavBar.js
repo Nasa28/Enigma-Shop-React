@@ -1,69 +1,97 @@
-import { Link } from 'react-router-dom';
+import React, { useState } from 'react';
 import { useSelector } from 'react-redux';
-import LoggedInUser from '../containers/User/LoggedInUser';
-import '../styles/NavBar.css';
-import DashboardNav from '../containers/User/Dealer/DashboardNav';
+import { Link } from 'react-router-dom';
 
+import { Menu } from 'antd';
+import {
+  UserAddOutlined,
+  UserOutlined,
+  AppstoreOutlined,
+  SettingOutlined,
+  ShoppingCartOutlined,
+} from '@ant-design/icons';
+
+const { SubMenu } = Menu;
 const NavBar = () => {
   const auth = useSelector((state) => state.authenticate);
-  console.log(auth);
+  const [current, setCurrent] = useState('home');
+  const handleClick = (e) => {
+    setCurrent(e.key);
+  };
   return (
-    <div data-testid="nav">
-      <nav className="">
-        <div className=" nav">
-          <ul className="">
-            <Link to="/" className="ml-4">
-              Home
-            </Link>
-          </ul>
+    <Menu
+      onClick={handleClick}
+      selectedKeys={[current]}
+      mode="horizontal"
+      className="mb-5 main-nav"
+    >
+      <Menu.Item key="home" icon={<AppstoreOutlined />}>
+        <Link to="/">Home</Link>
+      </Menu.Item>
+      {!auth.status && (
+        <>
+          <Menu.Item
+            key="register"
+            icon={<UserAddOutlined />}
+            className="float-right"
+          >
+            <Link to="/verify-email">Register</Link>
+          </Menu.Item>
+          <Menu.Item
+            key="login"
+            icon={<UserOutlined />}
+            className="float-right"
+          >
+            <Link to="/login">Login</Link>
+          </Menu.Item>
+        </>
+      )}
+      {auth.status && (
+        <>
+          <Menu.Item
+            key="login"
+            icon={<UserOutlined />}
+            className="float-right"
+          >
+            <Link to="/logout">Logout</Link>
+          </Menu.Item>
 
-          <ul className="">
-            <Link to="/products" className=" ml-4">
-              Products
-            </Link>
-          </ul>
-
-          {!auth.status && (
-            <>
-              <ul className="">
-                <Link to="/verify-email" className=" ml-4">
-                  Register
-                </Link>
-              </ul>
-              <ul className="">
-                <Link to="/login" className="ml-4">
-                  Login
-                </Link>
-              </ul>
-            </>
-          )}
-
-          <ul className="ml-4">{auth.status && <LoggedInUser />}</ul>
-          {auth.status && (
-            <ul>
-              <Link to="/product/my-profile" className="ml-4">
-                Profile
-              </Link>
-            </ul>
-          )}
-          {auth.status && (
-            <>
-              <ul>
-                <Link to="/logout" className="ml-4">
-                  Logout
-                </Link>
-              </ul>
-            </>
-          )}
-
-          <u className="last-nav ml-4">
+          <SubMenu
+            key="SubMenu"
+            icon={<SettingOutlined />}
+            title={auth.firstName}
+          >
+            <Menu.ItemGroup title="Account">
+              <Menu.Item key="setting:1">
+                <Link to="/account">Profile</Link>
+              </Menu.Item>
+              <Menu.Item key="setting:2">
+                <Link to="/password-reset">Change Password</Link>
+              </Menu.Item>
+            </Menu.ItemGroup>
             {(auth.role === 'dealer' || auth.role === 'admin') && (
-              <DashboardNav />
+              <Menu.ItemGroup title="Dashboard">
+                <Menu.Item key="setting:3">
+                  <Link to="/dashboard">Dashboard</Link>
+                </Menu.Item>
+                <Menu.Item key="setting:4">
+                  <Link to="/product/create-product">Post Product</Link>
+                </Menu.Item>
+                <Menu.Item key="setting:5">
+                  <Link to="/update-product">Update Product</Link>
+                </Menu.Item>
+                <Menu.Item key="setting:6">
+                  <Link to="/delete-product">Delete Product</Link>
+                </Menu.Item>
+              </Menu.ItemGroup>
             )}
-          </u>
-        </div>
-      </nav>
-    </div>
+          </SubMenu>
+        </>
+      )}
+      <Menu.Item key="cart" className="float-left">
+        <Link to="/cart">{<ShoppingCartOutlined />}</Link>
+      </Menu.Item>
+    </Menu>
   );
 };
 

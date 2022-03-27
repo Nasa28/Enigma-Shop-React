@@ -1,31 +1,36 @@
-import React from 'react';
+import React, { useState } from 'react';
 import { Link } from 'react-router-dom';
-import MyProducts from './MyProducts';
-import '../../../styles/NavBar.css';
 
+import { Menu } from 'antd';
+import {
+  UserAddOutlined,
+  UserOutlined,
+} from '@ant-design/icons';
+
+const { SubMenu } = Menu;
 const DashboardNav = () => {
+  const [current, setCurrent] = useState('home');
+  const handleClick = (e) => {
+    setCurrent(e.key);
+  };
   return (
-    <>
-      <nav className=" container-fluid">
-        <div className="dashboard">
-          <ul>
-            <Link to="/product/create-product" className="ml-4">
-              Post Product
-            </Link>
-          </ul>
-          
-          <ul>
-            <Link
-              to="/my-products"
-              className="ml-4"
-              onClick={() => MyProducts()}
-            >
-              My products
-            </Link>
-          </ul>
-        </div>
-      </nav>
-    </>
+    <div className="main-nav">
+      <Menu onClick={handleClick} selectedKeys={[current]} mode="vertical">
+        <Menu.Item key="home">
+          <Link to="/product/create-product">Post Product</Link>
+        </Menu.Item>
+        <Menu.Item
+          key="register"
+          icon={<UserAddOutlined />}
+          className="float-right"
+        >
+          <Link to="my-products">My Product List</Link>
+        </Menu.Item>
+        <Menu.Item key="login" icon={<UserOutlined />} className="float-right">
+          <Link to="/login">Login</Link>
+        </Menu.Item>
+      </Menu>
+    </div>
   );
 };
 

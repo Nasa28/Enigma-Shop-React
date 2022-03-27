@@ -47,8 +47,8 @@ const Register = () => {
       );
     } catch (error) {
       dispatch(SignupFailure(`${error.response.data.message}, Try again`));
-      console.log(register.error)
-      toast.warning(`${register.error}`);
+      console.log(register.error);
+      toast.warning(register.error);
     }
 
     if (person.email && person.password && person.passwordConfirm) {

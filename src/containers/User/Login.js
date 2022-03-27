@@ -5,7 +5,7 @@ import { toast, ToastContainer } from 'react-toastify';
 import { Navigate } from 'react-router';
 import authenticate from '../../Redux/Actions/authenticate';
 import { userLogin, loginFailure } from '../../Redux/Actions/login';
-// import LoginError from './LoginError';
+import LoginError from './LoginError';
 
 const Login = () => {
   const dispatch = useDispatch();
@@ -48,8 +48,8 @@ const Login = () => {
         }),
       );
     } catch (error) {
-      dispatch(loginFailure(`${error.response.data.message}, Try again`));
-      toast.warning(`${login.error}`);
+      dispatch(loginFailure(error.response.data.message));
+      toast.warning(login.error);
     }
   };
   const { email, password } = person;
@@ -68,7 +68,7 @@ const Login = () => {
         pauseOnHover
       />
       <h2 className="text-center mb-4">Login</h2>
-      {/* {login.error && <LoginError error={login.error} />} */}
+      {login.error && <LoginError />}
       {auth.status && <Navigate to="/" replace />}
       <form onSubmit={handleSubmit}>
         <div className="form-group">

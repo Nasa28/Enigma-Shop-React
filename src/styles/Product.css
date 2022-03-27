@@ -2,16 +2,16 @@
   display: grid;
   grid-template-columns: 1fr 1fr 1fr 1fr;
   grid-gap: 25px;
-  width: 400px;
-  height: 300px;
+  width: 250px;
+  height: 150px;
   font-size: 16px;
   border: solid rgb(177, 173, 173);
   border-radius: 10px;
 }
 
 .image {
-  width: 350px;
-  height: 230px;
+  width: 200px;
+  height: 130px;
   padding: 10px;
 }
 
