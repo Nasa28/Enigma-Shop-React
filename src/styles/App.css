@@ -79,3 +79,11 @@ body {
   /* padding-top: 10px; */
   text-align: center;
 }
+
+.user-logo{
+  background-color: rgb(129, 126, 126);
+  height: 150px;
+  display: flex;
+  align-items: center;
+  justify-content: space-around;
+}

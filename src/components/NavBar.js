@@ -23,7 +23,7 @@ const NavBar = () => {
       onClick={handleClick}
       selectedKeys={[current]}
       mode="horizontal"
-      className="mb-5 main-nav"
+      className=" main-nav"
     >
       <Menu.Item key="home" icon={<AppstoreOutlined />}>
         <Link to="/">Home</Link>
@@ -49,17 +49,22 @@ const NavBar = () => {
       {auth.status && (
         <>
           <Menu.Item
-            key="login"
+            key="logout"
             icon={<UserOutlined />}
             className="float-right"
           >
             <Link to="/logout">Logout</Link>
           </Menu.Item>
 
+          <Menu.Item key="dashboard" className="float-right">
+            <Link to="/dashboard">Dashboard</Link>
+          </Menu.Item>
           <SubMenu
             key="SubMenu"
             icon={<SettingOutlined />}
-            title={auth.firstName}
+            title={
+              auth.firstName.charAt(0).toUpperCase() + auth.firstName.slice(1)
+            }
           >
             <Menu.ItemGroup title="Account">
               <Menu.Item key="setting:1">
