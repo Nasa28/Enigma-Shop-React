@@ -7,7 +7,7 @@ const DealerConnectStripe = () => {
   const auth = useSelector((state) => state.authenticate);
   return (
     <>
-      <div className=" d-flex align-items-center">
+      <div className=" d-flex align-items-center ">
         <Card>
           <Meta
             avatar={<Avatar>{auth.firstName.charAt(0).toUpperCase()}</Avatar>}

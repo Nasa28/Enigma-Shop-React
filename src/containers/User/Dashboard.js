@@ -1,12 +1,13 @@
 import React from 'react';
 import { Outlet } from 'react-router-dom';
+import DashboardHome from './Dealer/DashboardHome';
 
 import DashboardNav from './Dealer/DashboardNav';
 import UserHeader from './Dealer/UserHeader';
 const Dashboard = () => {
   return (
     <>
-      <div className="user-logo" >
+      <div className="user-logo">
         <UserHeader />
       </div>
       <DashboardNav />

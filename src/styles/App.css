@@ -44,29 +44,27 @@ body {
 
 .my-card {
   display: flex;
-  /* grid-template-columns: 1fr 1fr 1fr; */
+  flex-wrap: wrap;
+  justify-content: space-around;
 }
 
-.main-nav {
+/* .main-nav {
   display: flex;
-  position: -webkit-sticky;
-  position: sticky;
-}
+} */
 
-.my-prod {
+/* .my-prod {
   margin-left: 15%;
-}
+} */
 
-
-.my-card {
+/* .my-card {
   display: grid;
-  grid-template-columns: 1fr 1fr 1fr ;
+  grid-template-columns: 1fr 1fr 1fr;
   grid-gap: 25px;
   max-width: 400px;
   max-height: 300px;
   font-size: 16px;
   border-radius: 10px;
-}
+} */
 
 .my-image {
   width: 300px;
@@ -80,10 +78,15 @@ body {
   text-align: center;
 }
 
-.user-logo{
+.user-logo {
   background-color: rgb(129, 126, 126);
   height: 150px;
   display: flex;
   align-items: center;
   justify-content: space-around;
+}
+
+.text {
+  margin: 0 10% 0 10%;
+  font-size: 24px;
 }

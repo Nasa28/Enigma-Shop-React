@@ -77,7 +77,7 @@ const NavBar = () => {
             {(auth.role === 'dealer' || auth.role === 'admin') && (
               <Menu.ItemGroup title="Dashboard">
                 <Menu.Item key="setting:3">
-                  <Link to="/dashboard/my-products">Dashboard</Link>
+                  <Link to="/dashboard">Dashboard</Link>
                 </Menu.Item>
                 {/* <Menu.Item key="setting:4">
                   <Link to="/dashboard/create-product">Post Product</Link>

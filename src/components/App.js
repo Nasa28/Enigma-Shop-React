@@ -14,6 +14,7 @@ import VerifyEmail from '../containers/User/VerifyEmail';
 import PostProduct from '../containers/User/Dealer/PostProduct';
 import MyProducts from '../containers/User/Dealer/MyProducts';
 import Dashboard from '../containers/User/Dashboard';
+import DashboardHome from '../containers/User/Dealer/DashboardHome';
 function App() {
   return (
     <div className="App">
@@ -27,6 +28,8 @@ function App() {
           <Route exact path="/logout" element={<Logout />} />
 
           <Route path="dashboard" element={<Dashboard />}>
+            <Route path="/dashboard" element={<DashboardHome />} />
+            <Route exact path="browse-products" element={<ProductList />} />
             <Route path="my-products" element={<MyProducts />} />
 
             <Route path="create-product" element={<PostProduct />} />

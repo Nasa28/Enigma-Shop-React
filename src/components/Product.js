@@ -3,13 +3,13 @@ import { Link } from 'react-router-dom';
 import '../styles/Product.css';
 
 const Product = ({ id, title, image, price }) => (
-  <div className="product-card "  key={id}>
-    <Link className="cards " to={`/product/${id}`}>
+  <div className=""  key={id}>
+    <Link className="card " to={`/product/${id}`}>
       <div>
-        <img className="image" src={image} alt={title} />
+        <img className="my-image" src={image} alt={title} />
       </div>
       <div>
-        <h3 className="title">{title}</h3>
+        <h3 className="my-title">{title}</h3>
         <h3 className="title">{price}</h3>
       </div>
     </Link>

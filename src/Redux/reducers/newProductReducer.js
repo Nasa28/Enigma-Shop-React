@@ -1,7 +1,6 @@
 import actionTypes from '../constants/actionTypes';
 
 const initialState = {
-  // product: {},
   error: '',
 };
 

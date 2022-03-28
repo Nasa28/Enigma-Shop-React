@@ -14,7 +14,6 @@ const ProductList = () => {
 
   const fetchProducts = async () => {
     const response = await axios.get(url);
-    console.log(response.data.products);
     dispatch(allproducts(response.data.products));
   };
 
@@ -25,7 +24,7 @@ const ProductList = () => {
   return (
     <>
       <div className="container">
-        <div className="productList">
+        <div className="my-card">
           {products.map((product) => {
             const { _id, title, address, description, price, images, slug } =
               product;
