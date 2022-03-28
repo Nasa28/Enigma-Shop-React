@@ -12,10 +12,10 @@ const DashboardNav = () => {
     <div className="main-nav">
       <Menu onClick={handleClick} selectedKeys={[current]} mode="vertical">
         <Menu.Item key="home">
-          <Link to="my-products">My Products</Link>
+          <Link to="my-products">Your Products</Link>
         </Menu.Item>
         <Menu.Item key="product" className="float-right">
-          <Link to="create-product">Post Product</Link>
+          <Link to="create-product">Add New Product</Link>
         </Menu.Item>
       </Menu>
     </div>

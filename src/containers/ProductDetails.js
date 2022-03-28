@@ -6,7 +6,6 @@ import { useSelector, useDispatch } from 'react-redux';
 import { useParams } from 'react-router';
 import Loading from '../components/Loading';
 import { singleproduct } from '../Redux/Actions/productActions';
-import '../styles/Details.css';
 
 const ProductDetails = () => {
   const details = useSelector((state) => state.detail.details);

@@ -2,36 +2,54 @@
 
 import React, { useState } from 'react';
 import axios from 'axios';
-import DashboardNav from './DashboardNav';
-// import { toast, ToastContainer } from 'react-toastify';
-// import { Navigate } from 'react-router';
-// import authenticate from '../../Redux/Actions/authenticate';
-
-//import { userSignup, SignupFailure } from '../../Redux/Actions/signup';
+import { useSelector, useDispatch } from 'react-redux';
+import { newProduct, newProductFail } from '../../../Redux/Actions/newProduct';
 
 const PostProduct = () => {
+  const auth = useSelector((state) => state.authenticate);
+  const dispatch = useDispatch();
   const [product, setProduct] = useState({
     title: '',
     price: '',
     description: '',
     stockBalance: '',
-    images: '',
     shipping: '',
     color: '',
   });
+  const [selectedFile, setSelectedFile] = useState(null);
+
+  const handleFileChange = (e) => {
+    setSelectedFile(e.target.files[0]);
+  };
 
   const handleChange = (event) => {
     const { name, value } = event.target;
 
     setProduct({ ...product, [name]: value });
   };
-  const { title, price, description, images, stockBalance, color } = product;
+  const { title, price, description, stockBalance } = product;
   const handleSubmit = async (event) => {
     event.preventDefault();
+    const loginFormData = new FormData();
+    loginFormData.append('title', title);
+    loginFormData.append('price', price);
+    loginFormData.append('description', description);
+    loginFormData.append('stockBalance', stockBalance);
+    console.log(selectedFile);
+    loginFormData.append('images', selectedFile);
+    loginFormData.append('upload_preset', 'kzq3yl0f');
     try {
       const url = 'https://enigma-shop.herokuapp.com/api/v1/products';
-      const response = await axios.post(url, { ...product });
-    } catch (error) {}
+      const response = await axios.post(url, loginFormData, {
+        headers: {
+          'Content-Type': 'multipart/form-data',
+          Authorization: `Bearer ${auth.token}`,
+        },
+      });
+      dispatch(newProduct(response));
+    } catch (error) {
+      dispatch(newProductFail(error));
+    }
   };
   return (
     <>
@@ -77,14 +95,23 @@ const PostProduct = () => {
             <input
               className="form-control"
               type="file"
-              name="images"
-              placeholder="images"
-              value={images}
-              onChange={handleChange}
+              onChange={handleFileChange}
               required
             />
           </div>
 
+          <div className="form-group mb-4">
+            <input
+              className="form-control"
+              type="number"
+              name="stockBalance"
+              placeholder="Stock Balance "
+              value={stockBalance}
+              onChange={handleChange}
+              required
+            />
+          </div>
+          {/* 
           <div className="form-group mb-4">
             <input
               className="form-control"
@@ -95,19 +122,7 @@ const PostProduct = () => {
               onChange={handleChange}
               required
             />
-          </div>
-
-          <div className="form-group mb-4">
-            <input
-              className="form-control"
-              type="number"
-              name="stockbalance"
-              placeholder="Stock Balance "
-              value={stockBalance}
-              onChange={handleChange}
-              required
-            />
-          </div>
+          </div> */}
 
           <div className="form-group mb-4">
             <label className="d-block" htmlFor="shipping">

@@ -9,6 +9,8 @@ const actionTypes = {
   USER_LOGIN: 'USER_LOGIN',
   USER_LOGIN_FAIL: 'USER_LOGIN_FAIL',
   MY_PRODUCTS: 'MY_PRODUCTS',
+  NEW_PRODUCT: 'NEW_PRODUCT',
+  NEW_PRODUCT_FAIL: 'NEW_PRODUCT_FAIL',
 };
 
 export default actionTypes;

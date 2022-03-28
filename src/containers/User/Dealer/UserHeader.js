@@ -5,7 +5,6 @@ import React from 'react';
 const { Meta } = Card;
 const DealerConnectStripe = () => {
   const auth = useSelector((state) => state.authenticate);
-  console.log(auth);
   return (
     <>
       <div className=" d-flex align-items-center">
