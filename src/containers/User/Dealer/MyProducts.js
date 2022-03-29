@@ -1,6 +1,6 @@
 /* eslint-disable camelcase */
 
-import { useEffect, useState } from 'react';
+import { useEffect } from 'react';
 import axios from 'axios';
 import { Link } from 'react-router-dom';
 import { HeatMapOutlined } from '@ant-design/icons';
@@ -30,7 +30,7 @@ const MyProducts = () => {
 
   useEffect(() => {
     myFetch();
-  }, []);
+  },[]);
 
   const isEmpty = () => {
     return (
@@ -61,7 +61,7 @@ const MyProducts = () => {
                     </div>
                     <div>
                       <h3 className="my-title">{title}</h3>
-                      <h3 className="title">{price}</h3>
+                      <h3 className="title text-success">$ {price}</h3>
                     </div>
                   </Link>
                 </div>

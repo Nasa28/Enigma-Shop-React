@@ -46,42 +46,36 @@ const NavBar = () => {
           </Menu.Item>
         </>
       )}
+      {auth.role === 'user' && (
+        <Menu.Item key="dashboard" className="float-right">
+          <Link to="/account">Dashboard</Link>
+        </Menu.Item>
+      )}
       {auth.status && (
         <>
-          <Menu.Item
-            key="logout"
-            icon={<UserOutlined />}
-            className="float-right"
-          >
-            <Link to="/logout">Logout</Link>
-          </Menu.Item>
-
-          <Menu.Item key="dashboard" className="float-right">
-            <Link to="/dashboard">Dashboard</Link>
-          </Menu.Item>
           <SubMenu
             key="SubMenu"
             icon={<SettingOutlined />}
-            title={
+            title={`Hi, ${
               auth.firstName.charAt(0).toUpperCase() + auth.firstName.slice(1)
-            }
+            }`}
           >
             <Menu.ItemGroup title="Account">
-              <Menu.Item key="setting:1">
-                <Link to="/account">Profile</Link>
+              <Menu.Item key="setting:1" icon={<UserOutlined />}>
+                <Link to="/account">My Account</Link>
               </Menu.Item>
               <Menu.Item key="setting:2">
-                <Link to="/password-reset">Change Password</Link>
+                <Link to="/logout">Logout</Link>
               </Menu.Item>
+             {auth.role==='user' && <Menu.Item key="setting:3">
+                <Link to="account/orders">Orders</Link>
+              </Menu.Item>}
             </Menu.ItemGroup>
             {(auth.role === 'dealer' || auth.role === 'admin') && (
               <Menu.ItemGroup title="Dashboard">
-                <Menu.Item key="setting:3">
+                <Menu.Item key="setting:4">
                   <Link to="/dashboard">Dashboard</Link>
                 </Menu.Item>
-                {/* <Menu.Item key="setting:4">
-                  <Link to="/dashboard/create-product">Post Product</Link>
-                </Menu.Item> */}
                 <Menu.Item key="setting:5">
                   <Link to="/update-product">Update Product</Link>
                 </Menu.Item>
@@ -94,7 +88,7 @@ const NavBar = () => {
         </>
       )}
       <Menu.Item key="cart" className="float-left">
-        <Link to="/cart">{<ShoppingCartOutlined />}</Link>
+        <Link to="/cart">{<ShoppingCartOutlined />} Cart</Link>
       </Menu.Item>
     </Menu>
   );

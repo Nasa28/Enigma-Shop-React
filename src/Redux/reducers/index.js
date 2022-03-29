@@ -8,6 +8,7 @@ import detailReducer from './detailReducer';
 import authenticateReducer from './authenticateReducer';
 import myProductsReducer from './myProductsReducer';
 import newProductReducer from './newProductReducer';
+import fetchUsersReducer from './fetchUsersReducer';
 const persistConfig = {
   key: 'root',
   storage,
@@ -22,6 +23,7 @@ const rootReducer = combineReducers({
   login: loginReducer,
   myProducts: myProductsReducer,
   newProduct: newProductReducer,
+  getUser: fetchUsersReducer,
 });
 
 export default persistReducer(persistConfig, rootReducer);

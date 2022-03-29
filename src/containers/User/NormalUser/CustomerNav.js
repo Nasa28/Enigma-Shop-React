@@ -3,7 +3,7 @@ import { Link } from 'react-router-dom';
 import { useSelector } from 'react-redux';
 import { Menu } from 'antd';
 
-const DashboardNav = () => {
+const CustomerNav = () => {
   const auth = useSelector((state) => state.authenticate);
 
   const [current, setCurrent] = useState('home');
@@ -13,17 +13,9 @@ const DashboardNav = () => {
   return (
     <div className="main-nav">
       <Menu onClick={handleClick} selectedKeys={[current]} mode="horizontal">
-        {(auth.role === 'dealer' || auth.role === 'admin') && (
-          <>
-            <Menu.Item key="my-product">
-              <Link to="my-products">Your Products</Link>
-            </Menu.Item>
-            <Menu.Item key="product" className="float-right">
-              <Link to="create-product">Add New Product</Link>
-            </Menu.Item>
-          </>
-        )}
-
+        <Menu.Item key="browse-product" className="float-right">
+          <Link to="browse-products">Browse Our Products</Link>
+        </Menu.Item>
         {auth.role === 'user' && (
           <Menu.Item key="orders" className="float-right">
             <Link to="orders">Orders</Link>
@@ -34,4 +26,4 @@ const DashboardNav = () => {
   );
 };
 
-export default DashboardNav;
+export default CustomerNav;

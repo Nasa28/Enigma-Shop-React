@@ -11,6 +11,8 @@ const actionTypes = {
   MY_PRODUCTS: 'MY_PRODUCTS',
   NEW_PRODUCT: 'NEW_PRODUCT',
   NEW_PRODUCT_FAIL: 'NEW_PRODUCT_FAIL',
+  FETCH_USERS: 'FETCH_USERS',
+  FETCH_USERS_FAIL: 'FETCH_USERS_FAIL',
 };
 
 export default actionTypes;

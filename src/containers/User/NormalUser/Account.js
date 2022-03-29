@@ -1,18 +1,18 @@
 import React from 'react';
 import { Outlet } from 'react-router-dom';
 
-import DashboardNav from './Dealer/DashboardNav';
-import UserHeader from './Dealer/UserHeader';
-const Dashboard = () => {
+import UserHeader from '../Dealer/UserHeader';
+import CustomerNav from './CustomerNav';
+const Account = () => {
   return (
     <>
       <div className="user-logo">
         <UserHeader />
       </div>
-      <DashboardNav />
+      <CustomerNav />
       <Outlet />
     </>
   );
 };
 
-export default Dashboard;
+export default Account;

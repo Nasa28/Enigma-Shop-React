@@ -1,8 +1,8 @@
 import actionTypes from '../constants/actionTypes';
 
-export const newProduct = (user) => ({
+export const newProduct = (product) => ({
   type: actionTypes.NEW_PRODUCT,
-  payload: user,
+  payload: product,
 });
 
 export const newProductFail = (error) => ({
