@@ -24,19 +24,10 @@ const Login = () => {
 
   const handleSubmit = async (event) => {
     event.preventDefault();
-    console.log(person);
     try {
-      const url = `https://enigma-shop.herokuapp.com/api/v1/users/login`;
-      const response = await axios.post(url, person );
-      localStorage.setItem('token', JSON.stringify(response.data));
-      dispatch(
-        userLogin({
-          token: response.data.token,
-          email: response.data.user.email,
-          role: response.data.user.role,
-          // id: response.data.id,
-        }),
-      );
+      const url = process.env.REACT_APP_LOGIN;
+      const response = await axios.post(url, person);
+      dispatch(userLogin(response.data));
       dispatch(
         authenticate({
           status: true,

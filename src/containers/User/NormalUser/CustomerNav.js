@@ -19,11 +19,9 @@ const CustomerNav = () => {
             Browse Our Products
           </Link>
         </Menu.Item>
-        {auth.role === 'user' && (
-          <Menu.Item key="orders" className="float-right">
-            <Link to="orders">Orders</Link>
-          </Menu.Item>
-        )}
+        <Menu.Item key="orders" className="float-right">
+          <Link to="update-account">Update My Account</Link>
+        </Menu.Item>
       </Menu>
     </div>
   );

@@ -68,7 +68,7 @@ const NavBar = () => {
                 <Link to="/logout">Logout</Link>
               </Menu.Item>
              {auth.role==='user' && <Menu.Item key="setting:3">
-                <Link to="account/orders">Orders</Link>
+                <Link to="dashboard/orders">Orders</Link>
               </Menu.Item>}
             </Menu.ItemGroup>
             {(auth.role === 'dealer' || auth.role === 'admin') && (

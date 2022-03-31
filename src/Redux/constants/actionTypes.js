@@ -13,6 +13,8 @@ const actionTypes = {
   NEW_PRODUCT_FAIL: 'NEW_PRODUCT_FAIL',
   FETCH_USERS: 'FETCH_USERS',
   FETCH_USERS_FAIL: 'FETCH_USERS_FAIL',
+  UPDATE_ME: 'UPDATE_ME',
+  UPDATE_ME_FAIL: 'UPDATE_ME_FAIL',
 };
 
 export default actionTypes;

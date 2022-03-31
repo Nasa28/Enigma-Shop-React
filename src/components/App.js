@@ -19,6 +19,7 @@ import Account from '../containers/User/NormalUser/Account';
 import AccountHeader from '../containers/User/NormalUser/AccountHeader';
 import Orders from '../containers/User/NormalUser/Orders';
 import GetUsers from '../containers/User/Admin/GetUsers';
+import UpdateUser from '../containers/User/NormalUser/UpdateUser';
 function App() {
   return (
     <div className="App">
@@ -35,13 +36,14 @@ function App() {
             <Route path="/dashboard" element={<DashboardHome />} />
             <Route exact path="browse-products" element={<ProductList />} />
             <Route path="my-products" element={<MyProducts />} />
+            <Route exact path="orders" element={<Orders />} />
 
             <Route path="users" element={<GetUsers />} />
             <Route path="create-product" element={<PostProduct />} />
           </Route>
           <Route path="account" element={<Account />}>
             <Route path="/account" element={<AccountHeader />} />
-            <Route exact path="orders" element={<Orders />} />
+            <Route exact path="update-account" element={<UpdateUser />} />
           </Route>
           <Route exact path="/product/:slug" element={<ProductDetails />} />
           <Route exact path="About" element={<About />} />
