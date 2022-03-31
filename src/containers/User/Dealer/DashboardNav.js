@@ -23,11 +23,20 @@ const DashboardNav = () => {
             </Menu.Item>
           </>
         )}
-
         {auth.role === 'user' && (
           <Menu.Item key="orders" className="float-right">
             <Link to="orders">Orders</Link>
           </Menu.Item>
+        )}
+        {auth.role === 'admin' && (
+          <>
+            <Menu.Item key="orders" className="float-right">
+              <Link to="users">All Users</Link>
+            </Menu.Item>
+            <Menu.Item key="orders" className="float-right">
+              <Link to="users"></Link>
+            </Menu.Item>
+          </>
         )}
       </Menu>
     </div>

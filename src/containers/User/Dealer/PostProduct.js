@@ -139,7 +139,7 @@ const PostProduct = () => {
               </select>
             </label>
           </div>
-          <button type="submit" className="btn btn-primary form-control">
+          <button type="submit" className="btn btn-primary form-control mb-5">
             Submit
           </button>
         </form>

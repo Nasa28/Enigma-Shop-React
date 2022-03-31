@@ -12,7 +12,7 @@ import fetchUsersReducer from './fetchUsersReducer';
 const persistConfig = {
   key: 'root',
   storage,
-  whitelist: ['myProducts', 'authenticate', 'login'],
+  whitelist: ['myProducts', 'authenticate', 'login', 'product'],
 };
 
 const rootReducer = combineReducers({

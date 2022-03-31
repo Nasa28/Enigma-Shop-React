@@ -6,7 +6,7 @@ const initialState = {
 
 const detailReducer = (state = initialState, { type, payload }) => {
   switch (type) {
-    case actionTypes.SINGLE_product:
+    case actionTypes.SINGLE_PRODUCT:
       return { ...state, details: payload };
     default:
       return state;

@@ -2,9 +2,9 @@ import PropTypes from 'prop-types';
 import { Link } from 'react-router-dom';
 import '../styles/Product.css';
 
-const Product = ({ id, title, image, price }) => (
+const Product = ({ id, title, image, price , slug}) => (
   <div className="" key={id}>
-    <Link className="card " to={`/product/${id}`}>
+    <Link className="card " to={`/product/${slug}`}>
       <div>
         <img className="my-image" src={image} alt={title} />
       </div>

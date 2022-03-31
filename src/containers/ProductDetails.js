@@ -11,8 +11,8 @@ const ProductDetails = () => {
   const details = useSelector((state) => state.detail.details);
   const [loading, setLoading] = useState(true);
   const dispatch = useDispatch();
-  const { id } = useParams();
-  const url = `https://enigma-shop.herokuapp.com/api/v1/products/${id}`;
+  let params = useParams();
+  const url = `https://enigma-shop.herokuapp.com/api/v1/products/${params.slug}`;
   const fetchDetails = async () => {
     const response = await axios.get(url, { mode: 'cors' });
     dispatch(singleproduct(response.data.data.product));
@@ -21,7 +21,7 @@ const ProductDetails = () => {
 
   useEffect(() => {
     fetchDetails();
-  }, [id]);
+  }, [params.slug]);
 
   if (loading) {
     return (
@@ -30,20 +30,23 @@ const ProductDetails = () => {
       </main>
     );
   }
-  const { name, address, description, price, images } = details;
+  const { title, description, price, stockBalance, images, sold } = details;
   return (
     <div className="container">
       <div>
         <h3>
-          Name:
-          {name}
+          Title:
+          {title}
         </h3>
         <p>
-          Address:
-          {address}
+          Description:
+          {description}
         </p>
         <p>Price: ${price}</p>
-        <img src={images} alt={name} className="detail-img" />
+        <p>Stock Balance: {stockBalance}</p>
+
+        <p>Number Sold: {sold}</p>
+        <img src={images} alt={title} className="detail-img" />
       </div>
       <div className="description">
         <h3 className="text-decoration-underline">product Description</h3>

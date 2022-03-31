@@ -48,7 +48,7 @@ const NavBar = () => {
       )}
       {auth.role === 'user' && (
         <Menu.Item key="dashboard" className="float-right">
-          <Link to="/account">Dashboard</Link>
+          <Link to="/dashboard">Dashboard</Link>
         </Menu.Item>
       )}
       {auth.status && (

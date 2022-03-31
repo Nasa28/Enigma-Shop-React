@@ -37,6 +37,7 @@ const ProductList = () => {
                 description={description}
                 price={price}
                 image={images[0]}
+                slug={slug}
               />
             );
           })}
