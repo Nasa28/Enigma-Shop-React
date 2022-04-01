@@ -55,13 +55,28 @@ const GetUsers = () => {
         <div className="container-fluid">
           <div className="my-card">
             {allUsers.map((user) => {
-              const { _id, firstName, lastName, email, role } = user;
+              const {
+                _id,
+                firstName,
+                lastName,
+                email,
+                address,
+                phoneNumber,
+                role,
+              } = user;
               return (
                 <div className="" key={_id}>
                   <Link className="card " to={`/product/${_id}`}>
                     <div>
-                      <h3 className="my-title">{firstName}</h3>
-                      <h3 className="title text-success"> {lastName}</h3>
+                      <h3 className="my-title"> First Name{firstName}</h3>
+                      <h3 className="title text-success">
+                        Last Name: {lastName}
+                      </h3>
+                      <h3 className="title text-success">Address {address}</h3>
+                      <h3 className="title text-success">
+                        Phone Number {phoneNumber}
+                      </h3>
+
                       <p>{email}</p>
                       <p>{role}</p>
                     </div>

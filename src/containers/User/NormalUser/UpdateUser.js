@@ -9,11 +9,13 @@ const UpdateUser = () => {
   const dispatch = useDispatch();
   const auth = useSelector((state) => state.authenticate);
   const user = useSelector((state) => state.login.user.user);
-  const { firstName, lastName, email } = user;
+  const { firstName, lastName, email, address, phoneNumber } = user;
   const [person, setPerson] = useState({
     firstName,
     lastName,
     email,
+    address,
+    phoneNumber,
   });
 
   const handleChange = (event) => {
@@ -36,7 +38,6 @@ const UpdateUser = () => {
       },
       { withCredentials: true },
     );
-    console.log(response);
     dispatch(
       authenticate({
         status: true,
@@ -83,6 +84,29 @@ const UpdateUser = () => {
             name="lastName"
             placeholder="Last Name"
             value={person.lastName}
+            onChange={handleChange}
+            required
+          />
+        </div>
+
+        <div className="form-group mb-4">
+          <input
+            className="form-control"
+            type="text"
+            name="address"
+            placeholder="Address"
+            value={person.address}
+            onChange={handleChange}
+            required
+          />
+        </div>
+        <div className="form-group mb-4">
+          <input
+            className="form-control"
+            type="text"
+            name="phoneNumber"
+            placeholder="Phone Number"
+            value={person.phoneNumber}
             onChange={handleChange}
             required
           />

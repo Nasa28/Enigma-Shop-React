@@ -35,7 +35,6 @@ const PostProduct = () => {
     loginFormData.append('price', price);
     loginFormData.append('description', description);
     loginFormData.append('stockBalance', stockBalance);
-    console.log(selectedFile);
     loginFormData.append('images', selectedFile);
     loginFormData.append('upload_preset', 'kzq3yl0f');
     try {
@@ -47,6 +46,16 @@ const PostProduct = () => {
         },
       });
       dispatch(newProduct(response));
+      setProduct({
+        title: '',
+        price: '',
+        description: '',
+        stockBalance: '',
+        shipping: '',
+        color: '',
+        images: '',
+      });
+      setSelectedFile({ images: '' });
     } catch (error) {
       dispatch(newProductFail(error));
     }
