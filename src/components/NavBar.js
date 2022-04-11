@@ -80,7 +80,7 @@ const NavBar = () => {
                   <Link to="/update-product">Update Product</Link>
                 </Menu.Item>
                 <Menu.Item key="setting:6">
-                  <Link to="/delete-product">Delete Product</Link>
+                  <Link to="delete-account">Delete Account</Link>
                 </Menu.Item>
               </Menu.ItemGroup>
             )}

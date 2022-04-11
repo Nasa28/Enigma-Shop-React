@@ -3,22 +3,16 @@
 import { useEffect } from 'react';
 import axios from 'axios';
 import { useSelector, useDispatch } from 'react-redux';
-import { allproducts } from '../Redux/Actions/productActions';
 import Product from '../components/Product';
 import '../styles/Product.css';
+import { fetchProducts } from '../utils/productUtils';
 
 const ProductList = () => {
   const products = useSelector((state) => state.product.products);
   const dispatch = useDispatch();
-  const url = 'https://enigma-shop.herokuapp.com/api/v1/products';
-
-  const fetchProducts = async () => {
-    const response = await axios.get(url);
-    dispatch(allproducts(response.data.products));
-  };
 
   useEffect(() => {
-    fetchProducts();
+    fetchProducts(dispatch);
   }, []);
 
   return (

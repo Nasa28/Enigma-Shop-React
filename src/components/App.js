@@ -20,6 +20,7 @@ import AccountHeader from '../containers/User/NormalUser/AccountHeader';
 import Orders from '../containers/User/NormalUser/Orders';
 import GetUsers from '../containers/User/Admin/GetUsers';
 import UpdateUser from '../containers/User/NormalUser/UpdateUser';
+import DeleteMe from '../containers/User/NormalUser/DeleteMe';
 function App() {
   return (
     <div className="App">
@@ -31,6 +32,7 @@ function App() {
           <Route exact path="/register/complete" element={<Register />} />
           <Route exact path="/login" element={<Login />} />
           <Route exact path="/logout" element={<Logout />} />
+          <Route exact path="delete-account" element={<DeleteMe />} />
 
           <Route path="dashboard" element={<Dashboard />}>
             <Route path="/dashboard" element={<DashboardHome />} />

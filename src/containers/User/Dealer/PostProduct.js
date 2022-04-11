@@ -28,6 +28,8 @@ const PostProduct = () => {
     setProduct({ ...product, [name]: value });
   };
   const { title, price, description, stockBalance } = product;
+  
+  
   const handleSubmit = async (event) => {
     event.preventDefault();
     const loginFormData = new FormData();
